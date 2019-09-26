@@ -1,6 +1,6 @@
 # FakeBook 
 
-A simple Facebook web app.
+A simple Facebook web app created using Ruby on Rails.
 
 **Fakebook** is a simple facebook web app, made using the methodology of [The Oding Project](https://www.theodinproject.com). This project ask us to make a fake Facebook app and you can click [here](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project) to see the project requirements.
 
