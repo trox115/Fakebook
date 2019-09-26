@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
   get 'home/index'
   devise_for :users
-  devise_scope :user do
 
-    root 'devise/sessions#new'
-  end
-  devise_scope :users do
-  authenticated :users do
+  devise_scope :user do
+  authenticated :user do
     root 'home#index', as: :authenticated_root
   end
 
