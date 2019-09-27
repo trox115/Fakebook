@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @post=Post.all
+    @posts = Post.all
   end
 
   private
