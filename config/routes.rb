@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   get 'posts/new'
-  get 'posts/create'
+  post 'posts/new', to: 'posts#create'
   get 'posts/index'
   get 'home/index'
+  resources :posts
   devise_for :users
 
   devise_scope :user do
