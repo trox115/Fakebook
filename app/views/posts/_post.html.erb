@@ -1,0 +1,10 @@
+<% provide(:title, post.title) %>
+<li>
+ <div class="post">
+   <h3>
+     <%= link_to "#{post.id}",  post_path(post) %>
+   </h3>
+   <p><%= post.description %></p>
+   <p>Date: <%= post.created_at %>Creator: <%= post_creator(post) %></p>
+ </div>
+</li>
