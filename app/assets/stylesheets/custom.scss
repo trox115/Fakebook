@@ -202,14 +202,18 @@ input {
   }
 }
 
-/* microposts */
+/* posts */
 
-.microposts {
+.posts {
   list-style: none;
   padding: 0;
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
+    div p:last-child {
+      font-size: 0.9em;
+      color: #aaa
+    }
   }
   .user {
     margin-top: 5em;
