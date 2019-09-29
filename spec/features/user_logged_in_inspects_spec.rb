@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 RSpec.feature 'User Logged In' do
-  scenario 'user logs in and creates a post' do
+  scenario 'inspects the webapp links' do
     user = FactoryBot.create(:user)
     visit new_user_session_path
     within('form') do
@@ -12,13 +12,9 @@ RSpec.feature 'User Logged In' do
     click_button 'Log in'
     expect(page).to have_link 'Home'
     expect(page).to have_content 'Signed in successfully'
-    click_on 'New Post'
-    within('form') do
-      fill_in 'Post Content', with: 'Capybara Post'
-    end
-    click_button 'Post'
-    expect(page).to have_content('Capybara Post')
-    click_on 'Log Out'
-    expect(page).to have_content('Signed out successfully')
+    expect(page).to have_content('Home')
+    expect(page).to have_content('Feed')
+    expect(page).to have_content('New Post')
+    expect(page).to have_content('Log Out')
   end
 end
