@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:success] = 'Your post has been created'
-      redirect_to posts_index_path
+      redirect_to posts_path
     else
       render 'new'
     end
@@ -20,9 +20,24 @@ class PostsController < ApplicationController
     @posts = Post.all.ordered
   end
 
+  def destroy
+    @post.destroy
+    flash[:success] = ' Your post has been deleted'
+    reditect_to posts_path
+  end
+
+  
+
+  def edit
+  end
+
   private
 
   def post_params
     params.require(:post).permit(:content)
+  end
+
+  def creator_user
+    @post = current_user.posts.find_by(id: params[:id])
   end
 end
