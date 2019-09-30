@@ -210,9 +210,15 @@ input {
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
-    div p:last-child {
+    p {
       font-size: 0.9em;
-      color: #aaa
+      color: #aaa;
+      margin-bottom: 0px;
+    }
+    div p:first-child {
+      font-size: 1em;
+      color: black;
+      margin-bottom: 10px;
     }
   }
   .user {
