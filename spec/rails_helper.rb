@@ -9,8 +9,8 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'rspec/rails'
 require 'capybara/rails'
 RSpec.configure do |config|
-    config.include Devise::Test::ControllerHelpers, type: :controller
-    config.include Devise::Test::ControllerHelpers, type: :view
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :view
 end
 # Add additional requires below this line. Rails is not loaded until this point!
 
