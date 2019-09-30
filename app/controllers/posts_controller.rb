@@ -2,6 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :creator_user, only: %i[edit update destroy]
   def new
     @post = Post.new
   end
@@ -21,7 +22,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find_by(id: params[:id])
     @post.destroy
     flash[:success] = ' Your post has been deleted'
     redirect_to posts_path
@@ -32,8 +33,9 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
-    if @post.update(post_params)
+    @post = current_user.posts.find_by(id: params[:id])
+    if @post
+      @post.update(post_params)
       flash[:success] = 'Your post has been updated!'
       redirect_to posts_path
     else
@@ -49,5 +51,9 @@ class PostsController < ApplicationController
 
   def creator_user
     @post = current_user.posts.find_by(id: params[:id])
+    return if @post
+
+    flash[:notice] = ' The post does not belongs to the current user'
+    redirect_to posts_path
   end
 end
