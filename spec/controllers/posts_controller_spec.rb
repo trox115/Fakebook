@@ -6,7 +6,7 @@ RSpec.describe PostsController, type: :controller do
   describe 'get new post' do
     it 'returns http success' do
       get :new
-      expect(response).not_to have_http_status(:success)
+      expect(response).to have_http_status(:success)
     end
   end
 
