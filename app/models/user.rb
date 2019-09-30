@@ -7,4 +7,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :posts
   validates :name, presence: true, length: { maximum: 100 }
+  scope :all_except, ->(user) { where.not(id: user) }
 end
