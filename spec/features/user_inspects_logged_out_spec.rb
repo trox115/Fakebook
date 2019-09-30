@@ -7,8 +7,6 @@ RSpec.feature 'Logged out user Inspects the webapp' do
     respond_to be_success
     click_link 'Log in'
     respond_to be_success
-    click_link 'Home'
-    respond_to be_success
     click_link 'Sign Up'
     respond_to be_success
   end

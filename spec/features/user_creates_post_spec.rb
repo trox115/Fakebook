@@ -18,7 +18,5 @@ RSpec.feature 'User Logged In' do
     end
     click_button 'Post'
     expect(page).to have_content('Capybara Post')
-    click_on 'Log Out'
-    expect(page).to have_content('Signed out successfully')
   end
 end
