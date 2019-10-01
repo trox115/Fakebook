@@ -9,14 +9,18 @@
     <% end %>
     <% if post.comments.length > 0 %>
       <ul>
-      <p>Comments</p>
+      <h3>Comments</h3>
       <% post.comments.each do |comment| %>
-        <li><%= comment.content %></li>
+        <li>
+          <p><%= comment.content %></p>
+          <p>Created by: <%="#{creator(comment.user_id)}, #{time_ago_in_words(comment.created_at)} ago" %></p>
+        </li>
       <% end %>
       </ul>
     <% end %>
     <% @post = post %>
     <% @comment = post.comments.build %>
     <%= render 'comments/form'  %>
+
   </div>
 </li>
