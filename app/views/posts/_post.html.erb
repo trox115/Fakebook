@@ -15,10 +15,8 @@
       <% end %>
       </ul>
     <% end %>
-    <% @post_comment = post.comments.build %>
-
+    <% @post = post %>
+    <% @comment = post.comments.build %>
     <%= render 'comments/form'  %>
-
-
   </div>
 </li>
