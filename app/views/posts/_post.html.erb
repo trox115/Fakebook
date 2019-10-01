@@ -2,8 +2,9 @@
  <div>
    <p><%= post.content %></p>
    <p>Created <%= time_ago_in_words(post.created_at) %> ago, by: <%= post_creator(post) %></p>
+   <p><%= link_to "like", new_post_like_path(post) %> <%= likes(post) %></p>
    <% if current_user_is_creator?(post) %>
-   <p><%= link_to "Edit Post", edit_post_path(post) %> 
+   <p><%= link_to "Edit", edit_post_path(post) %> | 
    <%= link_to "Delete Post", post, method: :delete, data: { confirm: "You sure?" }  %></p>
    <% end %>
   </div>
