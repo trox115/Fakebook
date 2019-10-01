@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-RSpec.feature 'User Logged In' do
-  scenario 'User creates a post and likes it' do
+RSpec.feature 'User Logged In using helper' do
+  scenario 'User creates a post' do
     user = FactoryBot.create(:user)
     login_as(user, scope: :user)
     visit root_url
@@ -12,8 +12,5 @@ RSpec.feature 'User Logged In' do
     end
     click_button 'Post'
     expect(page).to have_content('Your post has been created')
-
-    click_on 'like'
-    expect(page).to have_content('You liked This post')
   end
 end
