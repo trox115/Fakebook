@@ -9,11 +9,11 @@ RSpec.describe Comment, type: :model do
 
   context 'Should not create a comment' do
     it 'without a user' do
-      expect(FactoryBot.build(:comment, user_id: nil)).not_to be_valid
+      expect(FactoryBot.build(:comment, user: nil)).not_to be_valid
     end
 
     it 'without a referenced post' do
-      expect(FactoryBot.build(:comment, post_id: nil)).not_to be_valid
+      expect(FactoryBot.build(:comment, post: nil)).not_to be_valid
     end
 
     it 'without content' do
