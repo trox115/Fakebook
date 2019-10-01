@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'home/index'
   resources :posts, only: [:new, :index, :create, :edit, :destroy, :update ] do 
     resources :likes, only: [:new]
+    resources :comments, only: [:create, :new]
   end
   devise_for :users
   root 'home#index'

@@ -15,15 +15,9 @@
       <% end %>
       </ul>
     <% end %>
+    <% @post_comment = post.comments.build %>
 
-    <#%=form_for(comment, url: local_assigns[:url]) do |f|  %>
-      <#%= render 'shared/error_messages_events' %>
-      
-      <#%=f.label :content, "content"%>
-      <#%=f.text_area :description, class: 'form-control'  %>
-
-      <#%= f.submit 'Comment!', class:"btn btn-primary"%>
-    <#%end%>
+    <%= render 'comments/form'  %>
 
 
   </div>

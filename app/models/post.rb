@@ -10,4 +10,5 @@ class Post < ApplicationRecord
   has_many :liked_users, through: :likes, source: 'user'
   validates :content, presence: true
   scope :ordered, -> { order(created_at: :DESC) }
+  accepts_nested_attributes_for :comments
 end
