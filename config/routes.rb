@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  get 'friendship_request/index'
   get 'users/index'
   get 'users/show' => 'users#show'
   get 'home/index'
+  resources :friendships
   resources :posts, only: [:new, :index, :create, :edit, :destroy, :update ] do 
     resources :likes, only: [:new]
     resources :comments, only: [:create, :new]
