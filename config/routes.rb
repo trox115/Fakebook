@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
   get 'friendship_request/index'
   get 'users/index'
-  get 'users/show' => 'users#show'
+  get 'users/show/:id', to: 'users#show', as: :user
   get 'home/index'
   resources :friendships, only: [:create, :index, :update]
   resources :posts, only: [:new, :index, :create, :edit, :destroy, :update ] do 
     resources :likes, only: [:new]
     resources :comments, only: [:create, :new]
   end
-  resources :users, only: [:show]
   devise_for :users
   root 'home#index'
   devise_scope :user do
