@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :friendship do
-    user { nil }
-    friend { nil }
+    user { FactoryBot.build(:user) }
+    friend { FactoryBot.build(:user) }
     confirmed { false }
   end
 end

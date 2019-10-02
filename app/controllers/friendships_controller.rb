@@ -3,6 +3,7 @@
 class FriendshipsController < ApplicationController
   def index
     @friendship_requests = current_user.friend_requests
+    @pending_friends = current_user.pending_friends
     @friends = current_user.friends
   end
 
@@ -19,7 +20,7 @@ class FriendshipsController < ApplicationController
         flash[:error] = "You already sent a friend request to #{other.name}"
       end
     end
-    redirect_to users_index_path
+    redirect_to friendships_path
   end
 
   def update

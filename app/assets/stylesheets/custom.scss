@@ -259,6 +259,8 @@ span.picture {
   }
 }
 
+/* Messages */
+
 .alert-error{
   color: #950000;
   background-color: #ff7373;
@@ -268,4 +270,23 @@ span.picture {
   color: #8b6b00;
   background-color: #dfd796;
   border-color: #c0c300;
+}
+
+/* Friends */
+
+.friends{
+  ul{
+    list-style: none;
+    li{
+      background-color: rgba(226, 226, 226, 0.3);
+      border-radius: 5px;
+      margin: 5px 5px;
+      padding: 3px 3px;
+      p{
+        margin-bottom: 0px;
+      }
+    }
+  }
+
+
 }
