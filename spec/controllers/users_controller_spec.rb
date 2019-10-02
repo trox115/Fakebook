@@ -30,7 +30,7 @@ RSpec.describe UsersController, type: :controller do
       get :show, params: { id: user.id }
       respond_to be_success
     end
-    
+
     it 'can go to the show view of other user' do
       user = FactoryBot.create(:user)
       other = FactoryBot.create(:user)

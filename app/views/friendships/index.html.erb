@@ -1,20 +1,20 @@
 <h3>Friend Requests</h3>
 <ul>
-  <% @friendship_requests.each do |item| %>
+  <% @friendship_requests.each do |user_requesting| %>
     <li>
-      <p><%= link_to "#{item.name}", user_path(item) %></p>
-      <p><%= item.email %></p>
+      <p><%= link_to "#{user_requesting.name}", user_path(user_requesting) %></p>
+      <p><%= user_requesting.email %></p>
+      <p><%= link_to "Confirm Friendship", friendship_confirm_path(user_requesting) %></p>
     </li>
   <% end %>
 </ul>
 
 <h3><%= "#{current_user.name.capitalize}'s" %> Friends</h3>
-
 <ul>
-  <% @friendships.each do |item| %>
+  <% @friends.each do |user| %>
     <li>
-      <p><%= link_to "#{item.name}", users_show_path(item) %></p>
-      <p><%= item.email %></p>
+      <p><strong><%= "#{user.name.capitalize}" %></strong><%="#{user.email}" %> </p>
+      <p><%= link_to 'Profile', user_path(user) %><%= link_to 'Send Friend Request', friendship_path(user) %> </p>
     </li>
   <% end %>
 </ul>

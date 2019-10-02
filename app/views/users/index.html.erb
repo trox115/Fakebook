@@ -1,8 +1,6 @@
 <h1>Show all users</h1>
 <%= will_paginate %>
 <ul class="users">
-<% @users.each do |x| %>
-  <li><strong><%= "#{x.name.capitalize}" %></strong>  <%="#{x.email}" %></li>
-<%end%>
+  <%= render @users %>
 </ul>
 <%= will_paginate %>

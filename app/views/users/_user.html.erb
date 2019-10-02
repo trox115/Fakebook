@@ -1,0 +1,4 @@
+<li>
+  <p><strong><%= "#{user.name.capitalize}" %></strong><%="#{user.email}" %> </p>
+  <p><%= link_to 'Profile', user_path(user) %><%= link_to 'Send Friend Request', friendship_path(user) %> </p>
+</li>
