@@ -15,6 +15,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 100 }
   scope :all_except, ->(user) { where.not(id: user) }
+  
   has_many :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
 
