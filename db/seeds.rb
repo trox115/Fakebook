@@ -22,17 +22,33 @@ User.create!( name: 'angie',
               password_confirmation: 'foobar')
 
 user = User.find_by(name: "carlos")
-post = user.posts.build(content: 'One post')
-post.save()
-post = user.posts.build(content: 'other ṕost')
-post.save()
-post = user.posts.build(content: 'Third one')
-post.save()
+post = user.posts.create(content: 'One post')
+(0..5).each do |n|
+  post.comments.create(user_id: user.id, content: "content for post #{n}")
+end
+
+post = user.posts.create(content: 'other ṕost')
+(0..5).each do |n|
+  post.comments.create(user_id: user.id, content: "content for post #{n}")
+end
+
+post = user.posts.create(content: 'Third one')
+(0..5).each do |n|
+  post.comments.create(user_id: user.id, content: "content for post #{n}")
+end
+
 
 user = User.find_by(name: "antonio")
-post = user.posts.build(content: 'One post')
-post.save()
-post = user.posts.build(content: 'other ṕost')
-post.save()
-post = user.posts.build(content: 'Third one')
-post.save()
+post = user.posts.create(content: 'One post')
+(0..5).each do |n|
+  post.comments.create(user_id: user.id, content: "content for post #{n}")
+end
+
+post = user.posts.create(content: 'other ṕost')
+(0..5).each do |n|
+  post.comments.create(user_id: user.id, content: "content for post #{n}")
+end
+
+post = user.posts.create(content: 'Third one')
+
+

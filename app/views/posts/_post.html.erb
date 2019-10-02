@@ -1,10 +1,26 @@
 <li>
- <div>
-   <p><%= post.content %></p>
-   <p>Created <%= time_ago_in_words(post.created_at) %> ago, by: <%= post_creator(post) %></p>
-   <% if current_user_is_creator?(post) %>
-   <p><%= link_to "Edit Post", edit_post_path(post) %> 
-   <%= link_to "Delete Post", post, method: :delete, data: { confirm: "You sure?" }  %></p>
-   <% end %>
+  <div>
+    <p><%= post.content %></p>
+    <p>Created <%= time_ago_in_words(post.created_at) %> ago, by: <%= creator(post.user_id) %></p>
+    <p><%= link_to "like", new_post_like_path(post) %> <%= likes(post) %></p>
+    <% if current_user_is_creator?(post) %>
+    <p><%= link_to "Edit", edit_post_path(post) %> | 
+    <%= link_to "Delete Post", post, method: :delete, data: { confirm: "You sure?" }  %></p>
+    <% end %>
+    <% if post.comments.length > 0 %>
+      <ul>
+      <h3>Comments</h3>
+      <% post.comments.each do |comment| %>
+        <li>
+          <p><%= comment.content %></p>
+          <p>Created by: <%="#{creator(comment.user_id)}, #{time_ago_in_words(comment.created_at)} ago" %></p>
+        </li>
+      <% end %>
+      </ul>
+    <% end %>
+    <% @post = post %>
+    <% @comment = post.comments.build %>
+    <%= render 'comments/form'  %>
+
   </div>
 </li>
