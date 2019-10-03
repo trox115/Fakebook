@@ -13,12 +13,11 @@ class FriendshipsController < ApplicationController
     other = User.find_by(id: params[:id])
     if @friendship_request.save
       flash[:success] = "You send a friend request to #{other.name}"
+    elsif current_user.friend?(other)
+
+      flash[:alert] = "You and #{other.name} are already friends"
     else
-      if current_user.friend?(other)
-        flash[:alert] = "You and #{other.name} are already friends"
-      else
-        flash[:error] = "You already sent a friend request to #{other.name}"
-      end
+      flash[:error] = "You already sent a friend request to #{other.name}"
     end
     redirect_to friendships_path
   end
