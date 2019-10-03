@@ -42,6 +42,11 @@ class User < ApplicationRecord
     friendship1 = inverse_friendships.find { |friendship| friendship.user == user }
     friendship1.confirmed = true
     friendship1.save
+
+    friendship2 = user.inverse_friendships.find { |friendship| friendship.user == self } || Friendship.create(user_id: friendship1.friend_id,
+                                                                                                              friend_id: friendship1.user_id)
+    friendship2.confirmed = true
+    friendship2.save
   end
 
   def friend?(user)

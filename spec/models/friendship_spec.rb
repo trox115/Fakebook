@@ -32,7 +32,7 @@ RSpec.describe Friendship, type: :model do
       antonio = FactoryBot.create(:user)
       expect(FactoryBot.create(:friendship, user: carlos, friend: antonio)).to be_valid
       antonio.confirm_friend(antonio.friend_requests[0])
-      expect(antonio.friends.length).to eql(0)
+      expect(antonio.friends.length).to eql(1)
       expect(carlos.friends.length).to eql(1)
     end
   end
