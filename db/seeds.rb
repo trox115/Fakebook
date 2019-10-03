@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
 
 User.create!( name: 'carlos',
               email: 'carlos@email.com',
@@ -21,34 +22,32 @@ User.create!( name: 'angie',
               password: 'foobar',
               password_confirmation: 'foobar')
 
-user = User.find_by(name: "carlos")
-post = user.posts.create(content: 'One post')
-(0..5).each do |n|
-  post.comments.create(user_id: user.id, content: "content for post #{n}")
+20.times do   
+  User.create!( name: Faker::Name.name,
+                email: Faker::Internet.email,
+                password: 'foobar',
+                password_confirmation: 'foobar')
 end
 
-post = user.posts.create(content: 'other ṕost')
-(0..5).each do |n|
-  post.comments.create(user_id: user.id, content: "content for post #{n}")
+users = User.all
+users.each do |user|
+  # each user creates posts
+  (0..5).each do |n|
+    post = user.posts.create(content: Faker::Lorem.sentence )
+  end
+  others = User.all_except(user).order("RANDOM()").limit(5)
+  others.each do |other|
+    Friendship.create(user_id: other.id, friend_id: user.id)
+  end
 end
 
-post = user.posts.create(content: 'Third one')
-(0..5).each do |n|
-  post.comments.create(user_id: user.id, content: "content for post #{n}")
+posts = Post.all
+posts.each do |post|
+  users = User.order("RANDOM()").limit(3)
+  users.each do |user|
+    post.comments.create(user_id: user.id, content: Faker::Lorem.sentence )
+  end
 end
 
-
-user = User.find_by(name: "antonio")
-post = user.posts.create(content: 'One post')
-(0..5).each do |n|
-  post.comments.create(user_id: user.id, content: "content for post #{n}")
-end
-
-post = user.posts.create(content: 'other ṕost')
-(0..5).each do |n|
-  post.comments.create(user_id: user.id, content: "content for post #{n}")
-end
-
-post = user.posts.create(content: 'Third one')
 
 

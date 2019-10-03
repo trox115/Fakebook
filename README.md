@@ -3,9 +3,9 @@
 - [x] Use Postgresql for your database from the beginning (not sqlite3), that way your deployment to Heroku will go much more smoothly. See the Heroku Docs for setup info.
 - [x] Users must sign in to see anything except the sign in page.
 - [x] User sign-in should use the Devise gem. Devise gives you all sorts of helpful methods so you no longer have to write your own user passwords, sessions, and #current_user methods. See the Railscast (which uses Rails 3) for a step-by-step introduction. The docs will be fully current.
-- [ ] Users can send Friend Requests to other Users.
-- [ ] A User must accept the Friend Request to become friends.
-- [ ] The Friend Request shows up in the notifications section of a User’s navbar.
+- [x] Users can send Friend Requests to other Users.
+- [x] A User must accept the Friend Request to become friends.
+- [x] The Friend Request shows up in the notifications section of a User’s navbar.
 - [x] Users can create Posts (text only to start).
 - [x] Users can Like Posts.
 - [x] Users can Comment on Posts.

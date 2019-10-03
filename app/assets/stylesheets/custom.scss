@@ -258,3 +258,48 @@ span.picture {
     border: 0;
   }
 }
+
+/* Messages */
+
+.alert-error{
+  color: #950000;
+  background-color: #ff7373;
+  border-color: #ff8e8e;
+}
+.alert-alert{
+  color: #8b6b00;
+  background-color: #dfd796;
+  border-color: #c0c300;
+}
+
+span {
+  position: absolute;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 17px;
+  height: 17px;
+  text-align: center;
+  top: 5px;
+  right: 2px;
+  display: block;
+}
+
+/* Friends */
+
+.friends{
+  ul{
+    list-style: none;
+    li{
+      background-color: rgba(226, 226, 226, 0.3);
+      border-radius: 5px;
+      margin: 5px 5px;
+      padding: 3px 3px;
+      p{
+        margin-bottom: 0px;
+      }
+    }
+  }
+
+
+}

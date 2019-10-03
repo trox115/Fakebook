@@ -1,22 +1,35 @@
+# frozen_string_literal: true
+
 class FriendshipsController < ApplicationController
   def index
-    @friendship_request = current_user.friend_requests
+    @friendship_requests = current_user.friend_requests
+    @pending_friends = current_user.pending_friends
+    @friends = current_user.friends
   end
 
   def create
-    @friendship_request = Friendship.new(friendship_params) 
+    @friendship_request = Friendship.new(friend_id: params[:id])
     @friendship_request.user_id = current_user.id
-    if friendship_request.save
-      flash[:success]="new request sent"
+    other = User.find_by(id: params[:id])
+    if @friendship_request.save
+      flash[:success] = "You send a friend request to #{other.name}"
     else
-      flash[:notice]="Cant send request"
+      if current_user.friend?(other)
+        flash[:alert] = "You and #{other.name} are already friends"
+      else
+        flash[:error] = "You already sent a friend request to #{other.name}"
+      end
     end
-    redirect_to users_index_path
+    redirect_to friendships_path
   end
-  private
-  
-  def friendship_params
-    params.require(:friendship_request).permit(:friend_id)
+
+  def update
+    user = User.find_by(id: params[:id])
+    if current_user.confirm_friend(user)
+      flash[:success] = "Now you are a #{user.name}'s friend"
+    else
+      flash[:error] = 'There was a problem'
+    end
+    redirect_to friendships_path
   end
 end
-
