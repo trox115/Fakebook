@@ -26,10 +26,10 @@ class FriendshipsController < ApplicationController
   def update
     user = User.find_by(id: params[:id])
     if current_user.confirm_friend(user)
-      flash[:success] = 'Now You are friends'
+      flash[:success] = "Now you are a #{user.name}'s friend"
     else
-      flash[:notice] = 'There was a problem'
+      flash[:error] = 'There was a problem'
     end
-    redirect_to users_index_path
+    redirect_to friendships_path
   end
 end

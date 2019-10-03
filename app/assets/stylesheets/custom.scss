@@ -272,6 +272,19 @@ span.picture {
   border-color: #c0c300;
 }
 
+span {
+  position: absolute;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 17px;
+  height: 17px;
+  text-align: center;
+  top: 5px;
+  right: 2px;
+  display: block;
+}
+
 /* Friends */
 
 .friends{

@@ -28,10 +28,16 @@ User.create!( name: 'angie',
                 password: 'foobar',
                 password_confirmation: 'foobar')
 end
+
 users = User.all
 users.each do |user|
+  # each user creates posts
   (0..5).each do |n|
     post = user.posts.create(content: Faker::Lorem.sentence )
+  end
+  others = User.all_except(user).order("RANDOM()").limit(5)
+  others.each do |other|
+    Friendship.create(user_id: other.id, friend_id: user.id)
   end
 end
 
