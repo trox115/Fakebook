@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'omniauth-facebook'
 
 gem 'bootstrap-will_paginate', '1.0.0'
+gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 gem 'will_paginate', '3.1.7'
 
 # Use Redis adapter to run Action Cable in production
