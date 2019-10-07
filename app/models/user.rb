@@ -15,19 +15,17 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 100 }
   scope :all_except, ->(user) { where.not(id: user) }
-
+  has_many :friends, through: :friendships
   has_many :friendships
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
 
   def friends
-    friends_array = friendships.map { |friendship| friendship.friend if friendship.confirmed }
-    if !friends_array.nil?
-      friends_array + inverse_friendships.map { |friendship| friendship.user if friendship.confirmed }
-    else
-      friends_array = inverse_friendships.map { |friendship| friendship.user if friendship.confirmed }
+    friends_friended = self.friendships.select(:id, :friend_id)
+                                    .where(user_id: self.id, confirmed: true)
 
-    end
-    friends_array.compact
+   friended_friends = self.inverse_friendships.select(:id, :user_id)
+                                    .where(friend_id: self.id, confirmed:true)
+   (get_users_with(friends_friended) + get_users_with(friended_friends))
   end
 
   def pending_friends
@@ -48,6 +46,15 @@ class User < ApplicationRecord
     friendship2.confirmed = true
     friendship2.save
   end
+
+  def get_users_with(ids)
+     ids.each_with_object([]) do |friend, arr|
+       arr << User.find(value_from(friend))
+     end
+   end
+   def value_from(model)
+     model.has_attribute?("user_id") ? model.user_id : model.friend_id
+   end
 
   def friend?(user)
     friends.include?(user)
