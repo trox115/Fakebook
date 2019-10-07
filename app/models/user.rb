@@ -29,7 +29,9 @@ class User < ApplicationRecord
   end
 
   def pending_friends
-    friendships.map { |friendship| friendship.friend unless friendship.confirmed }.compact
+    friends_pending = self.friendships.select(:id, :friend_id)
+                                    .where(user_id: self.id, confirmed: false)
+    get_users_with(friends_pending)
   end
 
   def friend_requests
