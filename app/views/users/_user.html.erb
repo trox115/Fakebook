@@ -1,5 +1,5 @@
 <li>
-  <p><%=image_tag avatar_url(user)%><strong><%= "#{user.name.capitalize}" %>   </strong><%="#{user.email}" %> </p>
+  <p><%=image_tag avatar_url(user)%><strong><%= " #{user.name.capitalize}" %>   </strong><%="#{user.email}" %> </p>
   <p>
     <%= link_to 'Profile', user_path(user) %>
     <% if friend_requested?(user)%>
