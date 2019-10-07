@@ -8,7 +8,7 @@ class FriendshipsController < ApplicationController
   end
 
   def create
-    @friendship_request = Friendship.new(friend_id: params[:id])
+    @friendship_request = Friendship.new(friend_id: params[:id], confirmed: false)
     @friendship_request.user_id = current_user.id
     other = User.find_by(id: params[:id])
     if @friendship_request.save
