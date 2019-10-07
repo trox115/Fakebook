@@ -17,7 +17,7 @@ class FriendshipsController < ApplicationController
 
       flash[:alert] = "You and #{other.name} are already friends"
     else
-      flash[:error] = "You already sent a friend request to #{other.name}"
+      flash[:error] = "You already sent a friend request to  #{other.name}"
     end
     redirect_to friendships_path
   end
