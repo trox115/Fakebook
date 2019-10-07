@@ -70,6 +70,8 @@ class User < ApplicationRecord
       user.name = auth.info.name # assuming the user model has a name
       user.image_link = auth.info.image # assuming the user model has an image
     end
+  end
+
   def feed
     feed_users = friends
     feed_users << self
