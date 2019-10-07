@@ -8,7 +8,7 @@ class FriendshipsController < ApplicationController
   end
 
   def create
-    @friendship_request = Friendship.new(friend_id: params[:id])
+    @friendship_request = Friendship.new(friend_id: params[:id], confirmed: false)
     @friendship_request.user_id = current_user.id
     other = User.find_by(id: params[:id])
     if @friendship_request.save
@@ -17,14 +17,15 @@ class FriendshipsController < ApplicationController
 
       flash[:alert] = "You and #{other.name} are already friends"
     else
-      flash[:error] = "You already sent a friend request to #{other.name}"
+      flash[:error] = "You already sent a friend request to  #{other.name}"
     end
     redirect_to friendships_path
   end
 
   def update
-    user = User.find_by(id: params[:id])
-    if current_user.confirm_friend(user)
+    f = Friendship.find_by(friend_id: current_user.id, user_id: params[:id])
+    user = User.find_by(id: f.user_id)
+    if f.confirm_friendship
       flash[:success] = "Now you are a #{user.name}'s friend"
     else
       flash[:error] = 'There was a problem'
