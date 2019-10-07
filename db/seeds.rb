@@ -39,7 +39,7 @@ users.each do |user|
   counter = 0
   others.each do |other|
     f = Friendship.create(user_id: other.id, friend_id: user.id, confirmed: false)
-    user.confirm_friend(other) if counter.odd? && f.valid?
+    f.confirm_friendship if counter.odd? && f.valid?
     counter += 1
   end
 end

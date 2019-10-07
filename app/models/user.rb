@@ -39,20 +39,6 @@ class User < ApplicationRecord
     get_users_with(friends_requests)
   end
 
-  def confirm_friend(user)
-    friendship1 = inverse_friendships.find { |friendship| friendship.user == user }
-    return unless friendship1
-
-    friendship1.confirmed = true
-    friendship1.save
-
-    friendship2 = user.inverse_friendships.find { |friendship| friendship.user == self } ||
-                  Friendship.create(user_id: friendship1.friend_id,
-                                    friend_id: friendship1.user_id)
-    friendship2.confirmed = true
-    friendship2.save
-  end
-
   def get_users_with(ids)
     ids.each_with_object([]) do |friend, arr|
       arr << User.find(value_from(friend))
@@ -67,7 +53,9 @@ class User < ApplicationRecord
     friends.include?(user)
   end
 
-  def feed 
-    Post.where(user_id: friends)
+  def feed
+    feed_users = friends
+    feed_users << self
+    Post.where(user_id: feed_users)
   end
 end

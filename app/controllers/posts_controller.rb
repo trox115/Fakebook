@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.ordered
+    @posts = current_user.feed.ordered
   end
 
   def destroy

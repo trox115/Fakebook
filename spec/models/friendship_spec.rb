@@ -34,8 +34,9 @@ RSpec.describe Friendship, type: :model do
     it "carlos is antonios'friend and antonio is carlos's friend" do
       carlos = FactoryBot.create(:user)
       antonio = FactoryBot.create(:user)
-      expect(FactoryBot.create(:friendship, user: carlos, friend: antonio)).to be_valid
-      antonio.confirm_friend(antonio.friend_requests[0])
+      f = FactoryBot.create(:friendship, user: carlos, friend: antonio)
+      expect(f).to be_valid
+      f.confirm_friendship
       expect(antonio.friends.length).to eql(1)
       expect(carlos.friends.length).to eql(1)
     end
@@ -61,8 +62,8 @@ RSpec.describe Friendship, type: :model do
     it 'antonio confirms friendship with carlos' do
       carlos = FactoryBot.create(:user)
       antonio = FactoryBot.create(:user)
-      FactoryBot.create(:friendship, user: carlos, friend: antonio)
-      antonio.confirm_friend(carlos)
+      f = FactoryBot.create(:friendship, user: carlos, friend: antonio)
+      f.confirm_friendship
       expect(carlos.friends.include?(antonio)).to eql(true)
       expect(antonio.friends.include?(carlos)).to eql(true)
     end
@@ -70,15 +71,18 @@ RSpec.describe Friendship, type: :model do
     it 'carlos confirms invalid friendship with antonio' do
       carlos = FactoryBot.create(:user)
       antonio = FactoryBot.create(:user)
-      antonio.confirm_friend(carlos)
-      expect(carlos.friends.include?(antonio)).to eql(false)
+      f = FactoryBot.create(:friendship, user: carlos, friend: antonio)
+      f.confirm_friendship
+      expect(carlos.friends.include?(antonio)).to eql(true)
+      expect(carlos.pending_friends.include?(antonio)).to eql(false)
+      expect(carlos.friend_requests.include?(antonio)).to eql(false)
     end
 
     it 'carlos confirms invalid friendship with antonio' do
       carlos = FactoryBot.create(:user)
       antonio = FactoryBot.create(:user)
-      FactoryBot.create(:friendship, user: carlos, friend: antonio)
-      carlos.confirm_friend(antonio)
+      f = FactoryBot.create(:friendship, user: carlos, friend: carlos)
+      f.confirm_friendship
       expect(carlos.friends.include?(antonio)).to eql(false)
     end
   end
