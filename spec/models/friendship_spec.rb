@@ -18,6 +18,10 @@ RSpec.describe Friendship, type: :model do
       expect(FactoryBot.build(:friendship, friend: nil)).not_to be_valid
     end
 
+    it 'Can not create a friendship without a confirm value' do
+      expect(FactoryBot.build(:friendship, confirmed: nil)).not_to be_valid
+    end
+
     it 'Can not create a friendship twice' do
       user = FactoryBot.create(:user)
       friend = FactoryBot.create(:user)
@@ -26,14 +30,56 @@ RSpec.describe Friendship, type: :model do
     end
   end
 
-  context 'The friendship relationship is not symmetrical' do
-    it "carlos is antonios'friend but antonio is not carlos's friend" do
+  context 'The friendship relationship is symmetrical' do
+    it "carlos is antonios'friend and antonio is carlos's friend" do
       carlos = FactoryBot.create(:user)
       antonio = FactoryBot.create(:user)
       expect(FactoryBot.create(:friendship, user: carlos, friend: antonio)).to be_valid
       antonio.confirm_friend(antonio.friend_requests[0])
       expect(antonio.friends.length).to eql(1)
       expect(carlos.friends.length).to eql(1)
+    end
+  end
+
+  context 'pending friends' do
+    it 'carlos sends a friend request, carlos is in pending friends of antonio' do
+      carlos = FactoryBot.create(:user)
+      antonio = FactoryBot.create(:user)
+      FactoryBot.create(:friendship, user: carlos, friend: antonio)
+      expect(antonio.pending_friends.include?(carlos)).to eql(false)
+    end
+
+    it "carlos sends a friend request, antonio is in carlos's friends requests" do
+      carlos = FactoryBot.create(:user)
+      antonio = FactoryBot.create(:user)
+      FactoryBot.create(:friendship, user: carlos, friend: antonio)
+      expect(antonio.friend_requests.include?(antonio)).to eql(false)
+    end
+  end
+
+  context 'confirm friendship' do
+    it 'antonio confirms friendship with carlos' do
+      carlos = FactoryBot.create(:user)
+      antonio = FactoryBot.create(:user)
+      FactoryBot.create(:friendship, user: carlos, friend: antonio)
+      antonio.confirm_friend(carlos)
+      expect(carlos.friends.include?(antonio)).to eql(true)
+      expect(antonio.friends.include?(carlos)).to eql(true)
+    end
+
+    it 'carlos confirms invalid friendship with antonio' do
+      carlos = FactoryBot.create(:user)
+      antonio = FactoryBot.create(:user)
+      antonio.confirm_friend(carlos)
+      expect(carlos.friends.include?(antonio)).to eql(false)
+    end
+
+    it 'carlos confirms invalid friendship with antonio' do
+      carlos = FactoryBot.create(:user)
+      antonio = FactoryBot.create(:user)
+      FactoryBot.create(:friendship, user: carlos, friend: antonio)
+      carlos.confirm_friend(antonio)
+      expect(carlos.friends.include?(antonio)).to eql(false)
     end
   end
 end

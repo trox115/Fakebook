@@ -15,33 +15,37 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 100 }
   scope :all_except, ->(user) { where.not(id: user) }
+
   has_many :friends, through: :friendships
   has_many :friendships
+
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
 
   def friends
-    friends_friended = self.friendships.select(:id, :friend_id)
-                                    .where(user_id: self.id, confirmed: true)
-
-   friended_friends = self.inverse_friendships.select(:id, :user_id)
-                                    .where(friend_id: self.id, confirmed:true)
-   (get_users_with(friends_friended) + get_users_with(friended_friends))
+    friends_friended = friendships.select(:id, :friend_id)
+      .where(confirmed: true)
+    get_users_with(friends_friended)
   end
 
   def pending_friends
-    friends_pending = self.friendships.select(:id, :friend_id)
-                                    .where(user_id: self.id, confirmed: false)
+    friends_pending = friendships.select(:id, :friend_id)
+      .where(confirmed: false)
     get_users_with(friends_pending)
   end
 
   def friend_requests
-    inverse_friendships.map { |friendship| friendship.user unless friendship.confirmed }.compact
+    friends_requests = inverse_friendships.select(:id, :user_id)
+      .where(confirmed: false)
+    get_users_with(friends_requests)
   end
 
   def confirm_friend(user)
     friendship1 = inverse_friendships.find { |friendship| friendship.user == user }
+    return unless friendship1
+
     friendship1.confirmed = true
     friendship1.save
+
     friendship2 = user.inverse_friendships.find { |friendship| friendship.user == self } ||
                   Friendship.create(user_id: friendship1.friend_id,
                                     friend_id: friendship1.user_id)
@@ -50,15 +54,20 @@ class User < ApplicationRecord
   end
 
   def get_users_with(ids)
-     ids.each_with_object([]) do |friend, arr|
-       arr << User.find(value_from(friend))
-     end
-   end
-   def value_from(model)
-     model.has_attribute?("user_id") ? model.user_id : model.friend_id
-   end
+    ids.each_with_object([]) do |friend, arr|
+      arr << User.find(value_from(friend))
+    end
+  end
+
+  def value_from(model)
+    model.has_attribute?('user_id') ? model.user_id : model.friend_id
+  end
 
   def friend?(user)
     friends.include?(user)
+  end
+
+  def feed 
+    Post.where(user_id: friends)
   end
 end

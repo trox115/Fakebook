@@ -35,9 +35,12 @@ users.each do |user|
   (0..5).each do |n|
     post = user.posts.create(content: Faker::Lorem.sentence )
   end
-  others = User.all_except(user).order("RANDOM()").limit(5)
+  others = User.all_except(user).order("RANDOM()").limit(10)
+  counter = 0
   others.each do |other|
-    Friendship.create(user_id: other.id, friend_id: user.id)
+    f = Friendship.create(user_id: other.id, friend_id: user.id, confirmed: false)
+    user.confirm_friend(other) if counter.odd? && f.valid?
+    counter += 1
   end
 end
 
