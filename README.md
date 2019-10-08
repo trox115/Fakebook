@@ -82,6 +82,14 @@ your@pc:~$ rails db:seed
 
 ```
 
+To enable the facebook login system you have to provide two environment variables with the keys to do that you have to 
+```Shell
+your@pc:~$ export FACEBOOK_ID=heregoesyourfacebookappid
+your@pc:~$ export FACEBOOK_KEY=heregoesyourfacebookappkey
+
+```
+lastly run the server
+
 ```Shell
 your@pc:~$ rails server
 

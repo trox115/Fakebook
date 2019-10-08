@@ -6,6 +6,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook]
+  after_create :send_welcome
+  
   has_many :posts, dependent: :destroy
 
   has_many :comments, foreign_key: 'user_id', dependent: :destroy
@@ -79,5 +81,9 @@ class User < ApplicationRecord
     feed_users = friends
     feed_users << self
     Post.where(user_id: feed_users)
+  end
+
+  def send_welcome
+    UserMailer.welcome(self).deliver
   end
 end
