@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
   has_many :friends, through: :friendships
   has_many :friendships
-
+  has_one_attached :image
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
 
   def friends
