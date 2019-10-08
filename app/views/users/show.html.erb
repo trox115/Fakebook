@@ -1,13 +1,14 @@
 <div class="col-md-5"
 <ul class="users">
-  <% if @user.image_link==nil %>
-  <li> <%=image_tag avatar_url(@user)%> </li>
-  <% else %>
-  <li> <%= image_tag @user.image_link %> </li>
-  <%end%>
+
+  <li> <%=image_tag @user.image%> </li>
+
+
+
   <li><%= @user.name %></li>
   <li><%= @user.email %></li>
   <li><%= @user.created_at %></li>
+  <li><%= link_to 'Edit User', edit_user_registration_path %> </li>
 </ul>
 </div>
 <div class='col-md-7'>
