@@ -1,13 +1,16 @@
 <li>
+  <% if user.image.attached? == false %>
   <% if user.image_link == nil %>
   <p><%=image_tag avatar_url(user)%><strong><%= " #{user.name.capitalize}" %>
 </strong><%="#{user.email}" %> </p>
   <p>
   <% else %>
-  <p><%=image_tag user.image_link%><strong><%= " #{user.name.capitalize}" %>   
+  <p><%=image_tag user.image_link%><strong><%= " #{user.name.capitalize}" %>
 </strong><%="#{user.email}" %> </p>
   <%end%>
-
+<% else %>
+<%=image_tag user.image%>
+<%end%>
     <%= link_to 'Profile', user_path(user) %>
     <% if friend_requested?(user)%>
       you requested to be friends
