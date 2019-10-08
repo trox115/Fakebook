@@ -1,4 +1,4 @@
-#FakeBook
+# FakeBook
 
 A simple Facebook web app.
 
@@ -6,7 +6,7 @@ A simple Facebook web app.
 
 After each milestone the project will be reviewd and approved by a **TSE** from [Microverse](https://microverse.org)
 
-##Tools used
+## Tools used
 In this project we used:
 *Ruby
 *Ruby on Rails Framework
@@ -26,7 +26,7 @@ This project was created by:
 
 # The Web App
 
-The live version of this project is on [Private-Events by Carlos and António]()
+The live version of this project is on [Fakebook by Carlos and António](https://frozen-everglades-48914.herokuapp.com)
 
 # Required Installations
 
@@ -47,13 +47,13 @@ Once you have installed the requiered packages shown on the [Required Installati
 Clone the Repository, the folder toy_app will be downloaded
 
 ```Shell
-your@pc:~$ git clone https://github.com/carloshdelreal/members-only.git
+your@pc:~$ git clone https://github.com/trox115/Fakebook.git
 ```
 
 Move to the downloaded folder
 
 ```Shell
-your@pc:~$ cd members-only
+your@pc:~$ cd Fakebook
 ```
 
 install gems
@@ -65,14 +65,22 @@ your@pc:~$ bundle install --without production
 migrate the database
 
 ```Shell
+your@pc:~$ rails db:create
 your@pc:~$ rails db:migrate
 ```
 Finally, run the test suite to verify that everything is working correctly:
 
-```
-$ rails test
+```Shell
+your@pc:~$ rspec
 ```
 If the test suite passes, you'll be ready to run the app in a local server:
+
+If you desire to create dummy data to see the apps functionallity run
+
+```Shell
+your@pc:~$ rails db:seed
+
+```
 
 ```Shell
 your@pc:~$ rails server
