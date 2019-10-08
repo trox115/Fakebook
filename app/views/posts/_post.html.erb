@@ -1,10 +1,14 @@
 <li>
   <div>
     <p><%= post.content %></p>
+    <div class="image-post">
+    <picture><%= image_tag post.picture %></pictue>
+  </div>
+
     <p>Created <%= time_ago_in_words(post.created_at) %> ago, by: <%= creator(post.user_id) %></p>
     <p><%= link_to "like", new_post_like_path(post) %> <%= likes(post) %></p>
     <% if current_user_is_creator?(post) %>
-    <p><%= link_to "Edit", edit_post_path(post) %> | 
+    <p><%= link_to "Edit", edit_post_path(post) %> |
     <%= link_to "Delete Post", post, method: :delete, data: { confirm: "You sure?" }  %></p>
     <% end %>
     <% if post.comments.length > 0 %>
