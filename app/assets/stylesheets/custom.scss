@@ -300,6 +300,24 @@ span {
       }
     }
   }
+}
 
-
+#facebook-login{
+  border-color: transparent;
+  background-color: #385499;
+  position: relative;
+  color: #FFF;
+  display: inline-block;
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  border-color: rgba(0,89,153,0);
+}
+.iconFacebook path{
+  fill: white;
+  position: absolute;
+  top: 1px;
 }
