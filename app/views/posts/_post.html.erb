@@ -2,7 +2,9 @@
   <div>
     <p><%= post.content %></p>
     <div class="image-post">
-    <picture><%= image_tag post.picture %></pictue>
+    <% if post.picture.attached? %>
+      <li class="img"> <%=image_tag post.picture%> </li>
+    <% end %>
   </div>
 
     <p>Created <%= time_ago_in_words(post.created_at) %> ago, by: <%= creator(post.user_id) %></p>
