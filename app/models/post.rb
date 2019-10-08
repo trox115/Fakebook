@@ -11,4 +11,5 @@ class Post < ApplicationRecord
   validates :content, presence: true
   scope :ordered, -> { order(created_at: :DESC) }
   accepts_nested_attributes_for :comments
+  has_one_attached :picture
 end
