@@ -1,5 +1,6 @@
-class UserMailer < Devise::Mailer
+# frozen_string_literal: true
 
+class UserMailer < Devise::Mailer
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #

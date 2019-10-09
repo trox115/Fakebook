@@ -6,8 +6,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook]
-  after_create :send_welcome
-  
+  after_create :send_welcome, unless: :test?
+
   has_many :posts, dependent: :destroy
 
   has_many :comments, foreign_key: 'user_id', dependent: :destroy
@@ -85,5 +85,9 @@ class User < ApplicationRecord
 
   def send_welcome
     UserMailer.welcome(self).deliver
+  end
+
+  def test?
+    ENV['RAILS_ENV'] == 'test'
   end
 end
