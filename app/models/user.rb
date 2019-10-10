@@ -5,7 +5,9 @@ class User < ApplicationRecord
   #    :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: [:facebook]
+         :omniauthable, omniauth_providers: %i[facebook]
+  after_create :send_welcome, unless: :test?
+
   has_many :posts, dependent: :destroy
 
   has_many :comments, foreign_key: 'user_id', dependent: :destroy
@@ -19,7 +21,7 @@ class User < ApplicationRecord
 
   has_many :friends, through: :friendships
   has_many :friendships
-
+  has_one_attached :image
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
 
   def friends
@@ -69,7 +71,9 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name # assuming the user model has a name
-      user.image_link = auth.info.image # assuming the user model has an image
+      # If you are using confirmable and the provider(s) you use validate emails,
+      # uncomment the line below to skip the confirmation emails.
+      # user.skip_confirmation!
     end
   end
 
@@ -77,5 +81,13 @@ class User < ApplicationRecord
     feed_users = friends
     feed_users << self
     Post.where(user_id: feed_users)
+  end
+
+  def send_welcome
+    UserMailer.welcome(self).deliver
+  end
+
+  def test?
+    ENV['RAILS_ENV'] == 'test'
   end
 end

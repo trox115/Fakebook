@@ -5,7 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Environment Variables Secret Key File
-local_env.yml
+/config/local_env.yml
 
 # Ignore bundler config.
 /.bundle

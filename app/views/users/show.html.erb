@@ -1,6 +1,18 @@
+<div class="col-md-5">
 <ul class="users">
-
+  <% if @user.image.attached? %>
+    <li class="img"> <%=image_tag @user.image%> </li>
+  <% else %>
+    <li> <%=image_tag avatar_url(@user)%> </li>
+  <% end %>
   <li><%= @user.name %></li>
   <li><%= @user.email %></li>
   <li><%= @user.created_at %></li>
+  <li><%= link_to 'Edit User', edit_user_registration_path %> </li>
 </ul>
+</div>
+<div class='col-md-7 posts'>
+
+<%= render @posts %>
+
+</div>

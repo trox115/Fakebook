@@ -207,6 +207,9 @@ input {
 .posts {
   list-style: none;
   padding: 0;
+  ul {
+    list-style: none;
+  }
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
@@ -321,3 +324,16 @@ span {
   position: absolute;
   top: 1px;
 }
+
+  .img{
+    img{
+      width: 100px;
+      height:100px;
+    }
+  }
+  li{
+    img{
+      width: 100px;
+      height:100px;
+    }
+  }
