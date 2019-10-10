@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fakebook</title>
+      <%= render 'layouts/head'%>
+      <%= render 'layouts/shim' %>
+  </head>
+  <body>
+    <% flash.each do |message_type, message| %>
+      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+    <% end %>
+    <%= render 'layouts/header'%>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-10 col-md-offset-1'>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

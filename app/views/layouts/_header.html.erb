@@ -1,0 +1,26 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to "Fakebook", root_path, id: 'logo' %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><%= link_to "Hi,#{current_user.name}", user_path(current_user) %></li>
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Users", users_index_path %></li>
+          <li>
+            <%= link_to "Friends", friendships_path %>
+            <%if current_user.friend_requests.count > 0 %>
+              <span><%= current_user.friend_requests.count %></span>
+            <%end%>
+          </li>
+          <li><%= link_to "Feed", posts_path %></li>
+          <li><%= link_to "New Post", new_post_path %></li>
+          <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+          <li><%= link_to "Log in", new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
