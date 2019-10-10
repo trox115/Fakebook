@@ -7,12 +7,13 @@ A simple Facebook web app.
 After each milestone the project will be reviewd and approved by a **TSE** from [Microverse](https://microverse.org)
 
 ## Tools used
+
 In this project we used:
-*Ruby
-*Ruby on Rails Framework
-*Html
-*CSS
-*Lucid Chart - For building the ERB wich you can see [here]()*
+* Ruby
+* Ruby on Rails Framework
+* Html
+* CSS
+* Lucid Chart - For building the ERB wich you can see [here]()*
 
 # Author
 
