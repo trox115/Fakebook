@@ -2,9 +2,9 @@
 
 A simple Facebook web app.
 
-**Fakebook** is a simple facebook web app, made using the methodology of [The Oding Project](https://www.theodinproject.com). This prjoect ask us to make a fake facebook app and you can click [here](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project) to see the project requirements.
+**Fakebook** is a simple facebook web app, made using the methodology of [The Odin Project](https://www.theodinproject.com). This project ask us to make a facebook clone. You can click [here](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project) to see the project requirements.
 
-After each milestone the project will be reviewd and approved by a **TSE** from [Microverse](https://microverse.org)
+After each milestone the project will be reviewed and approved by a **TSE** from [Microverse](https://microverse.org).
 
 ## Tools used
 
@@ -20,7 +20,6 @@ In this project we used:
 This project was created by:
 
 * António Fernandes [Github account](https://github.com/trox115) [https://github.com/trox115][https://github.com/trox115]
-
 
 * Carlos Del Real [Github Account https://github.com/carloshdelreal](https://github.com/carloshdelreal)
 
