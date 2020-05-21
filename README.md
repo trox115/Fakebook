@@ -26,6 +26,8 @@ This project was created by:
 
 # The Web App
 
+![Screenshot](doc/fakebook.png)
+
 The live version of this project is on [Fakebook by Carlos and António](https://frozen-everglades-48914.herokuapp.com)
 
 # Required Installations
