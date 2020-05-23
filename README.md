@@ -4,9 +4,10 @@ A simple Facebook web app.
 
 **Fakebook** is a simple Facebook web app, made using the methodology of [The Oding Project](https://www.theodinproject.com). This project asks us to make a fake Facebook app and you can click [here](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project) to see the project requirements.
 
-After each milestone the project will be reviewd and approved by a **TSE** from [Microverse](https://microverse.org)
+After each milestone the project will be reviewed and approved by a **TSE** from [Microverse](https://microverse.org).
 
 ## Tools used
+
 In this project we used:
 *Ruby
 *Ruby on Rails Framework
@@ -14,17 +15,19 @@ In this project we used:
 *CSS
 *Lucid Chart - For building the ERB which you can see [here]()*
 
+
 # Author
 
 This project was created by:
 
 * António Fernandes [Github](https://github.com/trox115) | [Twitter](https://twitter.com/rock_67) | [LinkedIn](https://www.linkedin.com/in/antoniomfernandes/) | [Email](mailto:email@antoniofernandes.com) | [Portfolio](https://www.antoniofernandes.com/)
 
-
 * Carlos Del Real [Github Account https://github.com/carloshdelreal](https://github.com/carloshdelreal)
 
 
 # The Web App
+
+![Screenshot](doc/fakebook.png)
 
 The live version of this project is on [Fakebook by Carlos and António](https://frozen-everglades-48914.herokuapp.com)
 
