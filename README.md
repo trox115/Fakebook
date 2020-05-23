@@ -18,7 +18,7 @@ In this project we used:
 
 This project was created by:
 
-* António Fernandes [Github account](https://github.com/trox115) [https://github.com/trox115][https://github.com/trox115]
+* António Fernandes [Github](https://github.com/trox115) | [Twitter](https://twitter.com/rock_67) | [LinkedIn](https://www.linkedin.com/in/antoniomfernandes/) | [Email](mailto:email@antoniofernandes.com) | [Portfolio](https://www.antoniofernandes.com/)
 
 
 * Carlos Del Real [Github Account https://github.com/carloshdelreal](https://github.com/carloshdelreal)
