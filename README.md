@@ -6,14 +6,13 @@ A simple Facebook web app.
 
 After each milestone the project will be reviewed and approved by a **TSE** from [Microverse](https://microverse.org).
 
-## Tools used
+## Built With
 
-In this project we used:
-*Ruby
-*Ruby on Rails Framework
-*Html
-*CSS
-*Lucid Chart - For building the ERB which you can see [here]()*
+- Ruby
+- Ruby on Rails Framework
+- HTML
+- CSS
+- Lucid Chart - For building the ERB which you can see [here](doc/Facebook%20users%20diagram.pdf)
 
 
 # Author
@@ -29,7 +28,7 @@ This project was created by:
 
 ![Screenshot](doc/fakebook.png)
 
-The live version of this project is on [Fakebook by Carlos and António](https://frozen-everglades-48914.herokuapp.com)
+The live version of this project is on [Fakebook by Carlos and António](https://frozen-everglades-48914.herokuapp.com).
 
 # Required Installations
 
@@ -59,13 +58,13 @@ Move to the downloaded folder
 your@pc:~$ cd Fakebook
 ```
 
-install gems
+Install gems
 
 ```Shell
 your@pc:~$ bundle install --without production
 ```
 
-migrate the database
+Migrate the database
 
 ```Shell
 your@pc:~$ rails db:create
@@ -91,7 +90,7 @@ your@pc:~$ export FACEBOOK_ID=heregoesyourfacebookappid
 your@pc:~$ export FACEBOOK_KEY=heregoesyourfacebookappkey
 
 ```
-lastly, run the server
+Lastly, run the server
 
 ```Shell
 your@pc:~$ rails server
